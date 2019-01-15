@@ -1,9 +1,9 @@
 public Stack<int> SortStack(Stack<int> unsorted)
 {
-    Stack<int> sorted = new Stack<int>(unsorted.Count);
+    Stack<int> partiallySorted = new Stack<int>(unsorted.Count);
     int temp;
     bool sortDescending = true;
-    while (!IsSorted(sorted.ToArray()))
+    while (!IsSorted(partiallySorted.ToArray()))
     {
         if (sortDescending)
         {
@@ -13,24 +13,24 @@ public Stack<int> SortStack(Stack<int> unsorted)
                 int temp2 = unsorted.Pop();
                 if (temp > temp2)
                 {
-                    sorted.Push(temp);
+                    partiallySorted.Push(temp);
                     temp = temp2;
                 }
                 else
                 {
-                    sorted.Push(temp2);
+                    partiallySorted.Push(temp2);
                 }
             }
 
-            sorted.Push(temp);// remaining int.
+            partiallySorted.Push(temp);// remaining int.
             sortDescending = false;
         }
         else
         {
-            temp = sorted.Pop();
-            while (sorted.Count > 0)
+            temp = partiallySorted.Pop();
+            while (partiallySorted.Count > 0)
             {
-                int temp2 = sorted.Pop();
+                int temp2 = partiallySorted.Pop();
                 if (temp < temp2)
                 {
                     unsorted.Push(temp);
@@ -47,7 +47,7 @@ public Stack<int> SortStack(Stack<int> unsorted)
         }
     }
 
-    return sorted;
+    return partiallySorted;
 }
 
 public  bool IsSorted(int[] arr)
