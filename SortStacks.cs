@@ -75,3 +75,18 @@ public  bool IsSorted(int[] arr)
 
     return true;
 }
+
+
+// Unit tests...
+[TestCase(new int[] { -10, 55, 1, 4, -8, 2, 3, -5, 50, -200, 33, 7, 9, -3 })]
+[TestCase(new int[] { 10, 55, 1, 4, 8, 2, 3, 5, 50 })]
+[TestCase(new int[] { 4, 8, 2, 3, 5, 50 })]
+public void SortStack(int[] unsortedArrayToStack)
+{
+    Stack<int> unSorted = new Stack<int>(unsortedArrayToStack);
+    Stack<int> sorted = runner.SortStack(unSorted);
+
+    // Assert..
+    Assert.IsTrue(runner.IsSorted(sorted.ToArray()));
+}
+ 
