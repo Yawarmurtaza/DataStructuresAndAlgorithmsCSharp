@@ -41,7 +41,8 @@ public int[] FindLongestNonRecurringString(string input)
 }
 
 // unit tests..
-
+[TestCase("1234567890_=-()*&^%$£!", 0, 21, 22)]
+[TestCase("1234567890", 0, 9, 10)]
 [TestCase("qqqqqqqwwwwwrrrrwwwwtteteyrtrytuyiuoupupuoyoiyiruryurytuturirueyasdfghjklmnbvcxz", 63, 79, 17)]
 [TestCase("asdfghjklmnbvcxzqqqqqqqwwwwwrrrrwwwwtteteyrtrytuyiuoupupuoyoiyiruryurytuturiruey", 0, 16, 17)]
 [TestCase("", 0, 0, 0)]
