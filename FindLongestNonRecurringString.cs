@@ -57,9 +57,9 @@ public int[] FindLongestNonRecurringString(string input)
 [TestCase("abcadefghhijklmnopqqqqqqqqqqq", 9, 18, 10)]
 [TestCase("abcadefghhijklmnopq", 9, 18, 10)]
 [TestCase("abcadefgh", 1, 8, 8)]
-[TestCase("MyNameIsImanbcdfghjklggggggggggg", 7, 20, 14)]
-[TestCase("MyNameIsImanbcdfg", 7, 16, 10)]
-[TestCase("MyNameIsIman", 1, 7, 7)]
+[TestCase("MyNameIsYawarbcdfghjklggggggggggg", 10, 21, 12)]
+[TestCase("MyNameIsYawarbcdfg", 10, 17, 8)]
+[TestCase("MyNameIsYawar", 1, 7, 7)]
 public void FindLongestNonRecurringString(string input, int startIndex, int endIndex, int expectedLen)
 {
     int[] result = runner.FindLongestNonRecurringString(input.ToLower());
