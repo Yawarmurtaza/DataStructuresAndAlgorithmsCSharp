@@ -1,10 +1,3 @@
-private struct VisitedCharIndex
-{
-    public int Index { get; set; }
-    public bool Visited { get; set; }
-    public char Char { get; set; }  
-}
-
 public int[] FindLongestNonRecurringString(string input)
 {
     if (input == null) return null;
@@ -17,7 +10,9 @@ public int[] FindLongestNonRecurringString(string input)
         return new int[] { 0, 0, 1 };
     }
 
-    VisitedCharIndex[] visited = new VisitedCharIndex[255];
+    // to keep track of chars that we have visited and their indices
+    IDictionary<char, int> visited = new Dictionary<char, int>();
+   
     int startIndex = 0;
     int tempLen = 0;
     int finalLen = 0;
@@ -26,19 +21,17 @@ public int[] FindLongestNonRecurringString(string input)
     for (int i = 0; i < input.Length; i++)
     {
         char c = input[i];
-        if (visited[c].Visited)
+        if (visited.ContainsKey(c))
         {
-            if (startIndex < visited[c].Index + 1)
-                startIndex = visited[c].Index + 1;
+            if (startIndex < visited[c] + 1)
+                startIndex = visited[c] + 1;
 
-            tempLen = i - startIndex + 1;
-            visited[c].Index = i; // last seen index..
+            tempLen = i - startIndex + 1; // tempLen should be from last non repeating char till start index.
+            visited[c] = i; // last seen index..
         }
         else
         {
-            visited[c].Index = i;
-            visited[c].Visited = true;
-            visited[c].Char = c;
+            visited.Add(c, i);
             tempLen++;
         }
 
@@ -54,7 +47,6 @@ public int[] FindLongestNonRecurringString(string input)
     result[2] = finalLen;
     return result;
 }
-
 // Unit tests
 [TestCase("1234567890_=-()*&^%$£!", 0, 21, 22)]
 [TestCase("qqqqqqqwwwwwrrrrwwwwtteteyrtrytuyiuoupupuoyoiyiruryurytuturirueyasdfghjklmnbvcxz", 59, 79, 21)]
